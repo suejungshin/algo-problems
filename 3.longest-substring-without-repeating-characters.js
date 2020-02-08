@@ -10,37 +10,26 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
-
-  let result = 0;
-  let substring = '';
+  if (s.length === 0) {
+    return 0;
+  }
+  let maxLength = 0;
+  let begIndex = 0;
+  let counts = {};
 
   for (let i = 0; i < s.length; i++) {
-    for (let j = 0; j < s.length; j++) {
-      if (s[i] === s[j]) {
-        substring += s[i]
-      }
+    if (counts[s[i]] === undefined) {
+      counts[s[i]] = i;
+      maxLength = Math.max(maxLength, i - begIndex + 1);
+    } else {
+      begIndex = counts[s[i]] + 1;
+      counts[s[i]] = i;
     }
-    if () {
 
-    }
   }
 
-  return result;
+  return maxLength;
 
-  // var k = 0;
-  // var maxLength = 0;
-  // for(i = 0; i < s.length; i++) {
-  //     for (j = k; j < i; j++) {
-  //         if (s[i] === s[j]) {
-  //             k = j + 1;
-  //             break;
-  //         }
-  //     }
-  //     if (i - k + 1 > maxLength) {
-  //         maxLength = i - k + 1;
-  //     }
-  // }
-  // return maxLength;
 };
 // @lc code=end
 
